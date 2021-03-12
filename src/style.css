@@ -1,0 +1,26 @@
+.weather-app {
+  max-width: 600px;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid steelblue;
+  border-radius: 10px;
+}
+h1 {
+  color: steelblue;
+  font-size: 25px;
+  font-weight: 100;
+  line-height: 29px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: #272044;
+  font-size: 15px;
+  font-weight: 100;
+  line-height: 19px;
+}
