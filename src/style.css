@@ -30,6 +30,10 @@ li {
   line-height: 19px;
 }
 
+li::first-letter {
+  text-transform: capitalize;
+}
+
 .weather-temperature img {
   margin-right: 5px;
   height: 64px;

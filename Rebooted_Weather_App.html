@@ -17,10 +17,10 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
-          <h1>Madrid</h1>
+          <h1 id="city">Madrid</h1>
           <ul>
-            <li>Day Time</li>
-            <li>Weather/Sky Description</li>
+            <li id="date"></li>
+            <li id="weather-description"></li>
           </ul>
           <div class="row">
             <div class="col-6">
@@ -31,15 +31,17 @@
                   class="float-left"
                 />
                 <div class="float-left">
-                  <strong>12</strong
+                  <strong id="temperature"></strong
                   ><span class="units">°C | <a href="#">°F</a></span>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <ul>
-                <li>Preciptiation: 0%</li>
-                <li>Wind-Speed: 5 <a href="#">km/h</a></li>
+                <li>Preciptiation: <span id="precipitation"></span></li>
+                <li>
+                  Wind-Speed: <span id="windSpeed"></span> <a href="#">km/h</a>
+                </li>
               </ul>
             </div>
           </div>
