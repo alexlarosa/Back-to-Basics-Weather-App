@@ -19,15 +19,21 @@ function formatDate(timestamp) {
 function displayTemperature(response){
 
 let dateElement = document.querySelector("#date");
-dateElement.innerHTML = formatDate(response.data.dt* 1000);
-document.querySelector("#city").innerHTML = response.data.name;
+let cityElement = document.querySelector("#city");
 let tempElement = document.querySelector("#temperature");
-tempElement.innerHTML = Math.round(response.data.main.temp);
-document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].description;
-document.querySelector("#windSpeed").innerHTML = Math.round(response.data.wind.speed);
-let iconElement = document.querySelector("#weatherIcon")
-;iconElement.setAttribute(
+let descriptionElement = document.querySelector("#weather-description");
+let windElement = document.querySelector("#windSpeed");
+let iconElement = document.querySelector("#weatherIcon");
+
+celciusTemperature = response.data.main.temp;
+kmh = response.data.wind.speed
+
+dateElement.innerHTML = formatDate(response.data.dt* 1000);
+cityElement.innerHTML = response.data.name;
+tempElement.innerHTML = Math.round(celciusTemperature);
+descriptionElement.innerHTML =response.data.weather[0].description;
+windElement.innerHTML = `${Math.round(kmh)} km/h`;
+iconElement.setAttribute(
     "src", 
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     )
@@ -49,7 +55,37 @@ function handleSubmit(event) {
 search(cityInputElement.value);
 }
 
+function displayImperialData(event) {
+    event.preventDefault();
+    let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+    let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+    metricsLink.classList.remove("active");
+    imperialLink.classList.add("active");
+
+    let mph = kmh / 1.609;
+    let windSpeedElement = document.querySelector("#windSpeed");
+    windSpeedElement.innerHTML = `${Math.round(mph)} mph`;
+}
+
+function displayMetricsData(event) {
+    event.preventDefault();
+    metricsLink.classList.add("active");
+    imperialLink.classList.remove("active");
+    document.querySelector("#temperature").innerHTML = Math.round(celciusTemperature);
+    document.querySelector("#windSpeed").innerHTML = `${Math.round(kmh)} km/h`;
+}
+
 search("Madrid");
+
+let celciusTemperature = null;
+let kmh = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let imperialLink = document.querySelector("#imperial-link");
+imperialLink.addEventListener("click", displayImperialData)
+
+let metricsLink = document.querySelector("#metrics-link");
+metricsLink.addEventListener("click", displayMetricsData);

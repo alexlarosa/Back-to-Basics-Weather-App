@@ -51,3 +51,12 @@ li::first-letter {
   position: relative;
   top: -33px;
 }
+
+.weather-temperature .active {
+  color: #272044;
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+}
