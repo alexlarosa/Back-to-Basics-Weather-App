@@ -1,6 +1,15 @@
 function formatDate(timestamp) {
 
     let date  = new Date(timestamp);
+    
+    let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday"];
+    let day = daysOfTheWeek[date.getDay()];
+
+    return `${day} ${formatHours(timestamp)}`;
+}
+
+function formatHours(timestamp) {
+    let date  = new Date(timestamp);
     let hours = date.getHours();
     if (hours < 10) {
         hours = `0${hours}`
@@ -9,12 +18,9 @@ function formatDate(timestamp) {
     if (minutes < 10) {
         minutes = `0${minutes}`
     };
-    let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday"];
-    let day = daysOfTheWeek[date.getDay()];
 
-    return `${day} ${hours}:${minutes}`;
+    return `${hours}:${minutes}`;
 }
-
 
 function displayTemperature(response){
 
@@ -41,14 +47,20 @@ iconElement.setAttribute(
 }
 
 function displayForecast(response) {
-    let forecastElement = document.querySelector("#forecast");
-    let forecast = response.data.list[0];
-    console.log(forecast);
+    let forecastElement = document.querySelector("#forecasts");
+    forecastElement.innerHTML = null;
+    let forecast = null;
 
-    forecastElement.innerHTML = `
+    for (let index = 0; index < 6; index++) {
+    let forecast = response.data.list[index];
+    forecastElement.innerHTML += `
     <div class="col-2">
-              <h3>15:00</h3>
-              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" />
+              <h3>
+              ${formatHours(forecast.dt * 1000)}
+              </h3>
+              <img
+              src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+              />
               <div class="forecasted-temps">
               <strong>
               ${Math.round(forecast.main.temp_max)}°
@@ -57,7 +69,7 @@ function displayForecast(response) {
               </div>
             </div>
             `;
-    console.log(response.data);
+    }
 }
 
 function search(city) {
