@@ -17,6 +17,7 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
+          <div class="overview">
           <form id="search-form" class="mb-2">
             <div class="row">
               <div class="col-9">
@@ -38,6 +39,7 @@
             </div>
           </form>
           <h1 id="city">Madrid</h1>
+
           <ul>
             <li id="date"></li>
             <li id="weather-description"></li>
@@ -45,13 +47,15 @@
           <div class="row">
             <div class="col-6">
               <div class="clearfix weather-temperature">
-                <img src="" class="float-left" id="weatherIcon" />
+                <img src="" 
+                class="float-left" 
+                id="weatherIcon"
+                />
                 <div class="float-left">
                   <strong id="temperature"></strong
                   ><span class="units"
                     ><a href="#" id="metrics-link" class="active">°C</a> |
-                    <a href="#" id="imperial-link">°F</a></span
-                  >
+                    <a href="#" id="imperial-link">°F</a></span>
                 </div>
               </div>
             </div>
@@ -60,11 +64,12 @@
                 <li>Preciptiation: <span id="precipitation"></span></li>
                 <li>Wind-Speed: <span id="windSpeed"></span></li>
               </ul>
+              </div>
             </div>
-            <div class="row weekly-forecast">
-            <div class="col-2" id="forecasts">
+            <div class="row weekly-forecast" id="forecasts">
+            <div class="col-2">
               <h3>15:00</h3>
-              ß<img src="" alt="" />
+              <img src="" alt="" />
               <div class="forecasted-temps"><strong>99°</strong>99°</div>
             </div>
           </div>
