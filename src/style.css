@@ -1,3 +1,8 @@
+body {
+  background-color: #bd8069;
+  font-family: "Quicksand", sans-serif;
+  background: url(media/goldenGirl.jpeg) fixed;
+}
 .overview {
   margin-bottom: 20px;
 }
@@ -5,17 +10,21 @@
   max-width: 600px;
   margin: 20% auto;
 }
+
 .weather-app {
   padding: 20px;
-  border: 1px solid steelblue;
+  border: 1px solid rgba(17, 54, 47, 0.8);
   border-radius: 10px;
+  box-shadow: 2px, 2px, 5px, rgb(0, 0, 0.3);
+  backdrop-filter: blur(3px);
 }
 
 h1 {
-  color: steelblue;
+  color: #763626;
   font-size: 25px;
   font-weight: 100;
   line-height: 29px;
+  font-weight: bold;
 }
 
 ul {
@@ -27,7 +36,7 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: #272044;
+  color: rgba(17, 54, 47);
   font-size: 15px;
   font-weight: 100;
   line-height: 19px;
@@ -44,7 +53,7 @@ li::first-letter {
 }
 
 .weather-temperature strong {
-  color: red;
+  color: rgba(17, 54, 47);
   font-size: 64px;
   line-height: 1;
   font-weight: 400;
@@ -56,7 +65,7 @@ li::first-letter {
 }
 
 .weather-temperature .active {
-  color: #272044;
+  color: rgba(17, 54, 47);
   cursor: default;
 }
 .weekly-forecast {
@@ -64,13 +73,13 @@ li::first-letter {
 }
 
 .daily-forecasts {
-  border: 1px solid steelblue;
+  border: 1px solid #763626;
   border-radius: 10px;
   padding: 15px;
 }
 
 .weekly-forecast h3 {
-  color: steelblue;
+  color: #763626;
   font-size: 14px;
   font-weight: 375;
   text-align: center;
@@ -88,14 +97,29 @@ li::first-letter {
 
 .forecasted-temps {
   text-align: center;
-  color: steelblue;
+  color: #763626;
   font-size: 12px;
   font-weight: 350;
   height: auto;
   line-height: 14px;
   white-space: nowrap;
 }
-
+.btn {
+  background-color: rgba(17, 54, 47);
+  color: rgba(155, 171, 132);
+  border: none;
+  outline: none;
+  transition: all 200ms ease;
+}
+.btn:hover {
+  background-color: rgba(155, 171, 132);
+  color: rgba(17, 54, 47);
+}
 a {
   text-decoration: none;
+  color: rgba(155, 171, 132);
+  transition: all 200ms ease;
+}
+a:hover {
+  color: #763626;
 }
