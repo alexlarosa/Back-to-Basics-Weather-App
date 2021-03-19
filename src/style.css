@@ -3,16 +3,23 @@ body {
 }
 .container {
   font-family: "Quicksand", sans-serif;
-  min-width: 1650px;
-  min-height: 650px;
-  margin: 40px auto;
-  border-radius: 10px;
-  background: url(media/goldenGirl.jpeg) no-repeat;
+  margin-left: 30px;
+  top: 15px;
+}
+
+.goldenGirl {
+  z-index: -1;
+  position: absolute;
+  padding-right: 10%;
+  padding-left: 85%;
+  margin: 20px;
+  top: -120px;
+  right: 220px;
 }
 
 .weather-app-wrapper {
   max-width: 600px;
-  margin: 20% auto;
+  margin: 10% auto;
 }
 
 .weather-app-wrapper .leaves {
