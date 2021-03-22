@@ -1,6 +1,23 @@
+let lat = null;
+let lon = null;
+
+
+let celciusTemperature = null;
+let kmh = null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+let imperialLink = document.querySelector("#imperial-link");
+imperialLink.addEventListener("click", displayImperialData)
+
+let metricsLink = document.querySelector("#metrics-link");
+metricsLink.addEventListener("click", displayMetricsData);
+
+
 function formatDate(timestamp) {
 
-    let date  = new Date(timestamp);
+    let date = new Date(timestamp);
     
     let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday"];
     let day = daysOfTheWeek[date.getDay()];
@@ -22,6 +39,7 @@ function formatHours(timestamp) {
     return `${hours}:${minutes}`;
 }
 
+
 function displayTemperature(response){
 
 let dateElement = document.querySelector("#date");
@@ -34,16 +52,21 @@ let iconElement = document.querySelector("#weatherIcon");
 celciusTemperature = response.data.main.temp;
 kmh = response.data.wind.speed
 
+lat = response.data.coord.lat;
+lon = response.data.coord.lon;
+
 dateElement.innerHTML = formatDate(response.data.dt* 1000);
 cityElement.innerHTML = response.data.name;
 tempElement.innerHTML = Math.round(celciusTemperature);
-descriptionElement.innerHTML =response.data.weather[0].description;
+descriptionElement.innerHTML = response.data.weather[0].description;
 windElement.innerHTML = `${Math.round(kmh)} km/h`;
 iconElement.setAttribute(
     "src", 
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     )
     iconElement.setAttribute("alt", response.data.weather[0].description);
+
+    getPrecipitation(lat, lon);
 }
 
 function displayForecast(response) {
@@ -109,16 +132,18 @@ function displayMetricsData(event) {
     document.querySelector("#windSpeed").innerHTML = `${Math.round(kmh)} km/h`;
 }
 
+function getPrecipitation(lat, lon) {
+let apiKey = "aea833a90485bad517aeb7963cee7156";
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=&appid=${apiKey}`;
+axios.get(apiUrl).then(displayPrecipitation);
+}
+
+function displayPrecipitation(response) {
+
+    let percipitationElement = document.querySelector("#precipitation");
+    percipitationElement.innerHTML = `${response.data.daily[0].pop * 100}%`;
+}
+
+
+getPrecipitation(40.4165, -3.7026);
 search("Madrid");
-
-let celciusTemperature = null;
-let kmh = null;
-
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
-
-let imperialLink = document.querySelector("#imperial-link");
-imperialLink.addEventListener("click", displayImperialData)
-
-let metricsLink = document.querySelector("#metrics-link");
-metricsLink.addEventListener("click", displayMetricsData);
